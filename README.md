@@ -9,12 +9,7 @@ A starting point for Neovim that is:
 * Documented
 * Modular
 
-This repo is meant to be used as by **YOU** to begin your Neovim journey; remove the things you don't use and add what you miss.
-
 Kickstart.nvim targets *only* the latest ['stable'](https://github.com/neovim/neovim/releases/tag/stable) and latest ['nightly'](https://github.com/neovim/neovim/releases/tag/nightly) of Neovim. If you are experiencing issues, please make sure you have the latest versions.
-
-Distribution Alternatives:
-- [LazyVim](https://www.lazyvim.org/): A delightful distribution maintained by @folke (the author of lazy.nvim, the package manager used here)
 
 ### Installation
 
@@ -34,14 +29,10 @@ Distribution Alternatives:
     `~/.config/nvim` (MacOS)
     `%userprofile%\AppData\Local\nvim\` (Windows)
 
-* run: `git clone https://github.com/nvim-lua/kickstart.nvim.git ~/.config/nvim` OR: `gh repo clone nvim-lua/kickstart.nvim`
+* run: `git clone https://github.com/NoahSchiro/nvim.git ~/.config/nvim`
 * Run Neovim (from terminal or shortcut) and allow lazy.nvim to download files and set up the basics.
 * Once the setup is complete, restart Neovim.
 * **You're ready to go!**
-
-* (Recommended/Optional) Fork this repo (so that you have your own copy that you can modify).
-* Clone the kickstart repo into `$HOME/.config/nvim/` (Linux/Mac) or `%userprofile%\AppData\Local\nvim\` (Windows)
-  * If you don't want to include it as a git repo, you can just clone it and then move the files to this location
 
 Additional system requirements:
 - Make sure to review the readmes of the plugins if you are experiencing errors. In particular:
@@ -82,7 +73,6 @@ return {
   end,
 }
 ```
-
 
 This will automatically install [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) and enable it on startup. For more information, see documentation for [lazy.nvim](https://github.com/folke/lazy.nvim).
 
