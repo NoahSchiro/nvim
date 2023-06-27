@@ -7,7 +7,8 @@ return {
     config = function()
         require('glow').setup({
             style = "dark",
-            width = 120,
+            width_ratio  = 0.8,
+            height_ratio = 0.8,
         })
     end ,
     cmd="Glow"
