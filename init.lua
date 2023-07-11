@@ -6,8 +6,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Install package manager
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
+-- https://github.com/folke/lazy.nvim
+-- :help lazy.nvim.txt for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -22,10 +22,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
---  You can also configure plugins after the setup call,
---    as they will be available in your neovim runtime.
+-- You can configure plugins using the `config` key.
+-- You can also configure plugins after the setup call,
+-- as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
@@ -70,6 +69,9 @@ require('lazy').setup({
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
+      -- Adds english words to suggestions 
+      'uga-rosa/cmp-dictionary'
     },
   },
 
@@ -130,8 +132,14 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  {
+    -- Fuzzy Finder (files, lsp, etc)
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    }
+  },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -465,8 +473,46 @@ cmp.setup {
     { name = 'path' },
     { name = 'buffer' },
     { name = 'luasnip' },
+    { name = 'dictionary' },
   },
 }
+
+-- Dictionary completion set up
+local dict = require("cmp_dictionary")
+
+dict.setup({
+  exact = 5,
+  first_case_insensitive = true,
+  document_command = "wn %s -over",
+  max_items = 1,
+  capacity = 1,
+  debug = false,
+})
+
+
+dict.switcher({
+  -- filetype = {
+  --   lua = "/path/to/lua.dict",
+  --   javascript = { "/path/to/js.dict", "/path/to/js2.dict" },
+  -- },
+  -- filepath = {
+  --   [".*xmake.lua"] = { "/path/to/xmake.dict", "/path/to/lua.dict" },
+  --   ["%.tmux.*%.conf"] = { "/path/to/js.dict", "/path/to/js2.dict" },
+  -- },
+
+  -- For specific files, we can define specific dictionaries.
+  -- This just says, use the english dictionary for all file types
+  filepath = {
+    ["*"] = {"./en.dict"},
+  },
+
+  -- Spelling lang allows us to switch between languages if we are writing in multiple languages with
+  -- :set spellang = en / de
+  spelllang = {
+    en = "./en.dict",
+  },
+  document = false,
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
