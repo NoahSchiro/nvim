@@ -423,12 +423,7 @@ cmp.setup {
 -- Dictionary completion set up
 require("cmp_dictionary").setup({
   paths = { "~/.config/nvim/en.dict" },
-  max_number_items = 3,
-  exact_length = 3,
-  first_case_insensitive = true,
-  document = {
-    enable = true,
-  }
+  exact_length = 2,
 })
 
 
